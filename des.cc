@@ -191,7 +191,8 @@ string left_shift(const string &str, int shift) {
 vector<string> generate_K(const string &key) {
 	vector<string> K(16);
 
-	string binary_key = hex2bin(key);
+	// string binary_key = hex2bin(key);
+	string binary_key = key;
 	assert(binary_key.size() == 64);
 
 	binary_key = permute(binary_key, PC_1);
@@ -263,7 +264,8 @@ string f_transformation(string &R, string &k) {
 }
 
 string encrypt(const string &plaintext, vector<string> &K) {
-	string text = hex2bin(plaintext);
+	// string text = hex2bin(plaintext);
+	string text = plaintext;
 	assert(text.size() == 64);
 
 	text = permute(text, IP);
@@ -321,10 +323,13 @@ string bin2hex(const string &x) {
 }
 
 int main() {
-	string plaintext = "0123456789ABCDEF";
-	string key = "133457799BBCDFF1";
+	// string plaintext = "0123456789ABCDEF";
+	// string key = "133457799BBCDFF1";
 
-	cout << "plaintext: " << plaintext << '\n';
+	string ciphertext = "1100101011101101101000100110010101011111101101110011100001110011";
+	string key = "0100110001001111010101100100010101000011010100110100111001000100";
+
+	cout << "ciphertext: " << ciphertext << '\n';
 	cout << "key: " << key << '\n';
 	cout << '\n';
 
@@ -337,10 +342,10 @@ int main() {
 	cout << '\n';
 
 
-	auto cipher = encrypt(plaintext, K);
-	cipher = bin2hex(cipher);
-	cout << "cipher: " << cipher << '\n';
+	// auto cipher = encrypt(ciphertext, K);
+	// cipher = bin2hex(cipher);
+	// cout << "cipher: " << cipher << '\n';
 
-	auto text = decrypt(cipher, K);
-	cout << "decrypted message: " << bin2hex(text) << '\n';
+	auto text = decrypt(ciphertext, K);
+	cout << "decrypted message: " << text << '\n';
 }
